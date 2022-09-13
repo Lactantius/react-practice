@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 
-const EightBall = ({fortunes = defaultFortunes}) => {
-  const initialState = { msg: "Think of a question", color: "black" };
-  const [msg, setMsg] = useState(initialState);
-  return null;
+const EightBall = ({ fortunes = defaultFortunes }) => {
+  const initialFortune = { msg: "Think of a question", color: "black" };
+  const [fortune, setFortune] = useState(initialFortune);
+  return (
+    <div className="EightBall">
+      <div
+        className="EightBall-circle"
+        style={{ backgroundColor: fortune.color }}
+      >
+        <span className="EightBall-msg" style={{ color: "white"}}>{fortune.msg}</span>
+      </div>
+    </div>
+  );
 };
 
 interface Fortune {
-    msg: string;
-    color: string;
+  msg: string;
+  color: string;
 }
 
 const defaultFortunes = [
@@ -35,4 +44,3 @@ const defaultFortunes = [
 ];
 
 export default EightBall;
-
