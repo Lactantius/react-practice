@@ -4,14 +4,19 @@ import "./EightBall.css";
 const EightBall = ({ fortunes = defaultFortunes }) => {
   const initialFortune = { msg: "Think of a question", color: "black" };
   const [fortune, setFortune] = useState(initialFortune);
+  const pickFortune = () =>
+    fortunes[Math.floor(Math.random() * fortunes.length)];
   return (
     <div className="EightBall">
       <div
         className="EightBall-circle"
         style={{ backgroundColor: fortune.color }}
       >
-        <span className="EightBall-msg" style={{ color: "white"}}>{fortune.msg}</span>
+        <span className="EightBall-msg">{fortune.msg}</span>
       </div>
+      <button onClick={() => setFortune(pickFortune())} className="EightBall-button">
+        Receive Doubtful Advice!
+      </button>
     </div>
   );
 };

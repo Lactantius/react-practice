@@ -2,6 +2,7 @@
     display: grid;
     justify-self: center;
     background-color: #222;
+    border-radius: 5px;
 }
 
 .EightBall-circle {
@@ -17,5 +18,15 @@
 
 .EightBall-msg {
     align-self: center;
+    color: white;
     margin: 1rem;
+}
+
+.EightBall-button {
+    color: white;
+    font-size: 1.5rem;
+    background-color: #2288ee;
+    border: none;
+    border-radius: 5px;
+    padding: 1rem;
 }
