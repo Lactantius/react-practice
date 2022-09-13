@@ -14,7 +14,10 @@ const EightBall = ({ fortunes = defaultFortunes }) => {
       >
         <span className="EightBall-msg">{fortune.msg}</span>
       </div>
-      <button onClick={() => setFortune(pickFortune())} className="EightBall-button">
+      <button
+        onClick={() => setFortune(pickFortune())}
+        className="EightBall-button"
+      >
         Receive Doubtful Advice!
       </button>
     </div>
