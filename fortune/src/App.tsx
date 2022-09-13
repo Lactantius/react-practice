@@ -6,6 +6,7 @@ import EightBall from "./EightBall";
 function App() {
   return (
     <div className="App">
+      <h1>Ineffectual Fortunes</h1>
       <EightBall />
     </div>
   );

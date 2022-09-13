@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./EightBall.css";
 
 const EightBall = ({ fortunes = defaultFortunes }) => {
   const initialFortune = { msg: "Think of a question", color: "black" };

@@ -1,0 +1,21 @@
+.EightBall {
+    display: grid;
+    justify-self: center;
+    background-color: #222;
+}
+
+.EightBall-circle {
+    justify-self: center;
+    justify-content: center;
+    display: flex;
+    height: 20rem;
+    width: 20rem;
+    border-radius: 100%;
+    border-color: 1px solid white;
+    margin: 1rem;
+}
+
+.EightBall-msg {
+    align-self: center;
+    margin: 1rem;
+}
