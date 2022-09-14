@@ -45,8 +45,8 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   }
 
   /** Check if every cell is false */
-  function hasWon(board) {
-    return board.every((row) => row.every((cell) => !cell));
+  function hasWon(gameBoard) {
+    return gameBoard.every((row) => row.every((cell) => !cell));
   }
 
   function flipCellsAround(coord) {
@@ -61,7 +61,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         }
       };
 
-      const newBoard = oldBoard.map( row => row.slice() );
+      const newBoard = oldBoard.map((row) => row.slice());
 
       flipCell(y, x, newBoard);
       flipCell(y - 1, x, newBoard);
@@ -75,29 +75,37 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
   // if the game is won, just show a winning msg & render nothing else
 
-  // TODO
+  function winMessage() {
+    return (
+      <div className="Board-win">You won!</div>
+    )
+  }
 
   // make table board
 
-  return (
-    <table className="Board">
-      <tbody>
-        {board.map((row, rowIdx) => (
-          <tr key={String(rowIdx)}>
-            {row.map((cell, cellIdx) => (
-              <Cell
-                isLit={cell}
-                key={`${rowIdx}-${cellIdx}`}
-                flipCellsAroundMe={() =>
-                  flipCellsAround(`${rowIdx}-${cellIdx}`)
-                }
-              ></Cell>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+  function renderBoard() {
+    return (
+      <table className="Board">
+        <tbody>
+          {board.map((row, rowIdx) => (
+            <tr key={String(rowIdx)}>
+              {row.map((cell, cellIdx) => (
+                <Cell
+                  isLit={cell}
+                  key={`${rowIdx}-${cellIdx}`}
+                  flipCellsAroundMe={() =>
+                    flipCellsAround(`${rowIdx}-${cellIdx}`)
+                  }
+                ></Cell>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
+
+  return hasWon(board) ? winMessage() : renderBoard();
 }
 
 export default Board;
