@@ -28,13 +28,15 @@ import "./Board.css";
  **/
 
 function Board({ nrows, ncols, chanceLightStartsOn }) {
-  const [board, setBoard] = useState(createBoard());
+  const [board, setBoard] = useState(createBoard(nrows, ncols));
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
-  function createBoard() {
-    let initialBoard = [];
-    // TODO: create array-of-arrays of true/false values
-    return initialBoard;
+  function createBoard(height, width) {
+    const createRow = (nCells) => Array.from({ length: nCells }, (cell) =>
+      Math.random() > 0.5 ? true : false
+    );
+    const board = Array.from({length: height}, row => createRow(width));
+    return board;
   }
 
   function hasWon() {
@@ -42,7 +44,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   }
 
   function flipCellsAround(coord) {
-    setBoard(oldBoard => {
+    setBoard((oldBoard) => {
       const [y, x] = coord.split("-").map(Number);
 
       const flipCell = (y, x, boardCopy) => {
