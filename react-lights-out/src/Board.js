@@ -80,7 +80,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
       {board.map((row) => (
         <tr>
           {row.map((cell) => (
-            <Cell isLit={cell}></Cell>
+            <Cell isLit={cell} flipCellsAroundMe={flipCellsAround}></Cell>
           ))}
         </tr>
       ))}
