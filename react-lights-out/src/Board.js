@@ -28,15 +28,19 @@ import "./Board.css";
  **/
 
 function Board({ nrows, ncols, chanceLightStartsOn }) {
-  const [board, setBoard] = useState(createBoard(nrows, ncols));
+  const [board, setBoard] = useState(
+    createBoard(nrows, ncols, chanceLightStartsOn)
+  );
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
-  function createBoard(height, width) {
-    const createRow = (nCells) =>
+  function createBoard(height, width, chanceLit) {
+    const createRow = (nCells, chance) =>
       Array.from({ length: nCells }, (cell) =>
-        Math.random() > 0.5 ? true : false
+        Math.random() < chance ? true : false
       );
-    const board = Array.from({ length: height }, (row) => createRow(width));
+    const board = Array.from({ length: height }, (row) =>
+      createRow(width, chanceLit)
+    );
     return board;
   }
 
@@ -71,8 +75,17 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
   // make table board
 
-  // TODO
+  return (
+    <div className="Board">
+      {board.map((row) => (
+        <tr>
+          {row.map((cell) => (
+            <Cell isLit={cell}></Cell>
+          ))}
+        </tr>
+      ))}
+    </div>
+  );
 }
 
 export default Board;
-export { hasWon, createBoard };
