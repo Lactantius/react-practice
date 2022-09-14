@@ -61,11 +61,15 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         }
       };
 
-      // TODO: Make a (deep) copy of the oldBoard
+      const newBoard = oldBoard.map( row => row.slice() );
 
-      // TODO: in the copy, flip this cell and the cells around it
+      flipCell(y, x, newBoard);
+      flipCell(y - 1, x, newBoard);
+      flipCell(y + 1, x, newBoard);
+      flipCell(y, x - 1, newBoard);
+      flipCell(y, x + 1, newBoard);
 
-      // TODO: return the copy
+      return newBoard;
     });
   }
 
@@ -84,7 +88,9 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
               <Cell
                 isLit={cell}
                 key={`${rowIdx}-${cellIdx}`}
-                flipCellsAroundMe={flipCellsAround}
+                flipCellsAroundMe={() =>
+                  flipCellsAround(`${rowIdx}-${cellIdx}`)
+                }
               ></Cell>
             ))}
           </tr>
