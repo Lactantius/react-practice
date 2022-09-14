@@ -76,15 +76,21 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   // make table board
 
   return (
-    <div className="Board">
-      {board.map((row) => (
-        <tr>
-          {row.map((cell) => (
-            <Cell isLit={cell} flipCellsAroundMe={flipCellsAround}></Cell>
-          ))}
-        </tr>
-      ))}
-    </div>
+    <table className="Board">
+      <tbody>
+        {board.map((row, rowIdx) => (
+          <tr key={String(rowIdx)}>
+            {row.map((cell, cellIdx) => (
+              <Cell
+                isLit={cell}
+                key={`${rowIdx}-${cellIdx}`}
+                flipCellsAroundMe={flipCellsAround}
+              ></Cell>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 }
 
