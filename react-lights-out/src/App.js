@@ -7,7 +7,11 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Board nrows={5} ncols={5} chanceLightStartsOn={.5} />
+      <h1 className="App-title">Lights Out</h1>
+      <p className="App-instructions">
+        Click on the boxes to switch them all off.
+      </p>
+      <Board nrows={5} ncols={5} chanceLightStartsOn={0.5} />
     </div>
   );
 }
