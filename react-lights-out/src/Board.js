@@ -27,13 +27,13 @@ import "./Board.css";
  *
  **/
 
-function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.5 }) {
+function Board({ nrows = 5, ncols = 5, chanceCellClicked = 0.5 }) {
   const [board, setBoard] = useState(
-    createBoard(nrows, ncols, chanceLightStartsOn)
+    createBoard(nrows, ncols, chanceCellClicked)
   );
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
-  function createBoard(height, width, chanceLit) {
+  function createBoard(height, width, chanceClick) {
     /*     const createRow = (nCells, chance) =>
       Array.from({ length: nCells }, (cell) =>
         Math.random() < chance ? true : false
@@ -50,7 +50,7 @@ function Board({ nrows = 5, ncols = 5, chanceLightStartsOn = 0.5 }) {
     /** Some functional way would be cool, but can't think of any simple way right now */
     board.forEach((row, rowIdx) =>
       row.forEach((cell, cellIdx) =>
-        Math.random() < chanceLit
+        Math.random() < chanceClick
           ? flipCellsAround(board, rowIdx, cellIdx)
           : null
       )
