@@ -96,40 +96,40 @@ function Board({ nrows = 5, ncols = 5, chanceCellClicked = 0.5 }) {
     return <div className="Board-win">You won!</div>;
   }
 
+  function resetBoard() {
+    setBoard((old) => createBoard(nrows, ncols, chanceCellClicked));
+  }
+
   // make table board
 
   function renderBoard() {
     return (
-      <>
-        <table className="Board">
-          <tbody>
-            {board.map((row, rowIdx) => (
-              <tr key={String(rowIdx)}>
-                {row.map((cell, cellIdx) => (
-                  <Cell
-                    isLit={cell}
-                    key={`${rowIdx}-${cellIdx}`}
-                    flipCellsAroundMe={() =>
-                      updateBoardOnClick(`${rowIdx}-${cellIdx}`)
-                    }
-                  ></Cell>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <button
-          onClick={() => setBoard((old) =>
-            createBoard(nrows, ncols, chanceCellClicked)
-          )}
-        >
-          New Game?
-        </button>
-      </>
+      <table className="Board">
+        <tbody>
+          {board.map((row, rowIdx) => (
+            <tr key={String(rowIdx)}>
+              {row.map((cell, cellIdx) => (
+                <Cell
+                  isLit={cell}
+                  key={`${rowIdx}-${cellIdx}`}
+                  flipCellsAroundMe={() =>
+                    updateBoardOnClick(`${rowIdx}-${cellIdx}`)
+                  }
+                ></Cell>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 
-  return hasWon(board) ? winMessage() : renderBoard();
+  return (
+    <>
+      {hasWon(board) ? winMessage() : renderBoard()}
+      <button className="Board-button" onClick={resetBoard}>New Game?</button>
+    </>
+  );
 }
 
 export default Board;
