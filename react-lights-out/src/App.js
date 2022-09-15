@@ -11,7 +11,7 @@ function App() {
       <p className="App-instructions">
         Click on the boxes to switch them all off.
       </p>
-      <Board nrows={5} ncols={5} chanceLightStartsOn={0.5} />
+      <Board nrows={5} ncols={5} chanceCellClicked={0.5} />
     </div>
   );
 }

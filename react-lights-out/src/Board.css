@@ -3,3 +3,8 @@
   border: 3px solid black;
   padding: 5px;
 }
+
+.Board-win {
+  font-size: 6rem;
+  margin-top: 4rem;
+}
